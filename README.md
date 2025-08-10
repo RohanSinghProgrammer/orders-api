@@ -3,6 +3,6 @@
 - Command for starting orders-api microservice
 
 ``` bash
-go run cmd/orders-api/main.go -config ./config/local.yaml
+go run cmd/api/main.go -config ./config/local.yaml
 
 ```

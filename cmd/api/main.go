@@ -10,9 +10,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
 	"github.com/rohansinghprogrammer/orders-api/internals/config"
+	"github.com/rohansinghprogrammer/orders-api/internals/routes"
 )
 
 func main() {
@@ -21,10 +20,7 @@ func main() {
 
 	// Setup DB
 	// Setup Router
-	router := chi.NewRouter()
-	
-	// Initialize Logger
-	router.Use(middleware.Logger)
+	router := routes.OrderRoutes()
 
 	// Setup HTTP Server
 	server := http.Server{
@@ -32,9 +28,6 @@ func main() {
 		Handler: router,
 	}
 	// Setup Handlers
-	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello, Go"))
-	})
 
 	// Start HTTP Server
 	log.Printf("Server starting on http://localhost%s", cfg.Address)
